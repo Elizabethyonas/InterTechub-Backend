@@ -10,7 +10,7 @@
 ## Deployment
 This project is deployed on Vercel. You can access the live server .
 you can route to the following links
-https://inter-techub-backend-42ir.vercel.app/
-https://inter-techub-backend-42ir.vercel.app/name
-https://inter-techub-backend-42ir.vercel.app/hobby
-https://inter-techub-backend-42ir.vercel.app/dream
+# https://inter-techub-backend-42ir.vercel.app/
+# https://inter-techub-backend-42ir.vercel.app/name
+# https://inter-techub-backend-42ir.vercel.app/hobby
+# https://inter-techub-backend-42ir.vercel.app/dream
