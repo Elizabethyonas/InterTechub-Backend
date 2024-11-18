@@ -1,39 +1,39 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+  "net/http"
+
+  "github.com/gin-gonic/gin"
 )
 
-func Handler(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "text/plain")
-	c.String(200, "Welcome to my Golang API, please visit /name, /hobby, /dream.")
-}
+func Handler(w http.ResponseWriter, r *http.Request) {
+  gin.SetMode(gin.ReleaseMode)
+  router := gin.Default()
 
-func NameHandler(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "text/plain")
-	c.String(200, "Elizabet Yonas Regalzi")
-}
+  router.GET("/", func(c *gin.Context) {
+    c.Writer.Header().Set("Content-Type", "text/plain")
+    c.String(200, "Welcome to my Golang API, please visit /name, /hobby, /dream.")
+  })
 
-func HobbyHandler(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"hobby 1": "Coding",
-		"hobby 2": "Reading Books",
-		"hobby 3": "Listening to Music",
-	})
-}
+  router.GET("/name", func(c *gin.Context) {
+    c.Writer.Header().Set("Content-Type", "text/plain")
+    c.String(200, "Elizabet Yonas Regalzi")
+  })
+  router.GET("/hobby", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "hooby 1": "Coding",
+      "hobby 2": "Reading Books",
+      "hobby 3": "Listening to Musics",
+    })
+  })
+  router.GET("/dream", func(c *gin.Context) {
+    c.Writer.Header().Set("Content-Type", "text/plain")
+    c.String(200, "When you think you have done enough, you can always do more to become the best version of yourself.")
+  })
 
-func DreamHandler(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "text/plain")
-	c.String(200, "When you think you have done enough, you can always do more to become the best version of yourself.")
+  router.ServeHTTP(w, r)
 }
 
 func main() {
-	r := gin.Default()
-	r.GET("/", Handler)
-	r.GET("/name", NameHandler)
-	r.GET("/hobby", HobbyHandler)
-	r.GET("/dream", DreamHandler)
-
-	r.Run(":8080")
+  http.HandleFunc("/", Handler)
 }
